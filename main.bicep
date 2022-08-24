@@ -5,7 +5,7 @@ param location string = deployment().location
 var baseName = 'forrester22'
 
 resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
-  name: 'aks-rg'
+  name: '${baseName}-aks-app'
   location: location
 }
 
@@ -14,7 +14,7 @@ module sshKey 'br/building-blocks:ssh-keygen:1.0' = {
   
   name: 'sshKeyGen'
   params: {
-    passphrase: 'foobar'
+    passphrase: baseName
   }
 }
 
