@@ -1,10 +1,8 @@
 param location string = resourceGroup().location
-param baseName string = 'forrester22'
-param adminUsername string = 'admin001'
+param baseName string
+param adminUsername string
 param sshKey string
 param policyEnabled bool = false
-
-
 
 resource aks 'Microsoft.ContainerService/managedClusters@2022-06-01' = {
   name: '${baseName}app'
@@ -13,7 +11,7 @@ resource aks 'Microsoft.ContainerService/managedClusters@2022-06-01' = {
     type: 'SystemAssigned'
   }
   properties: {
-    kubernetesVersion: '1.19.7'
+    kubernetesVersion: '1.24.3'
     dnsPrefix: baseName
     enableRBAC: true
     agentPoolProfiles: [

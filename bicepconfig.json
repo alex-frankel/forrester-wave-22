@@ -1,0 +1,19 @@
+{
+    "moduleAliases": {
+        "ts": {},
+        "br": {
+            "building-blocks": {
+                "registry": "teambicepmodules.azurecr.io"
+            }
+        }
+    },
+    "analyzers": {
+        "core": {
+            "rules": {
+                "explicit-values-for-loc-params":{
+                    "level": "off"
+                }
+            }
+        }
+    }
+}
