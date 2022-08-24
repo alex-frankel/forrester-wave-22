@@ -18,7 +18,7 @@ module sshKey 'br/building-blocks:ssh-keygen:1.0' = {
   }
 }
 
-module aksDeploy 'br/building-blocks:aks-app:1.1' = {
+module aksDeploy 'br/building-blocks:aks-app:1.2' = {
   scope: rg
   
   name: 'aksDeploy'
@@ -28,5 +28,6 @@ module aksDeploy 'br/building-blocks:aks-app:1.1' = {
     baseName: baseName
     adminUsername: 'admin001'
     sshKey: sshKey.outputs.publicKey
+    policyEnabled: true
   }
 }

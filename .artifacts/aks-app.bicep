@@ -3,6 +3,7 @@ param baseName string
 param adminUsername string
 param sshKey string
 param policyEnabled bool = false
+param costControlesEnabled bool = false
 
 resource aks 'Microsoft.ContainerService/managedClusters@2022-06-01' = {
   name: '${baseName}app'
@@ -38,5 +39,12 @@ resource aks 'Microsoft.ContainerService/managedClusters@2022-06-01' = {
         enabled: policyEnabled
       }
     }
+  }
+}
+
+resource cost 'Microsoft.CostManagement/alerts@2021-10-01' = if(costControlesEnabled){
+  name: 'foo'
+  properties: {
+    // todo -- need help from michael/adam on how to write this code...
   }
 }
