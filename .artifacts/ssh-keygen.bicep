@@ -1,5 +1,7 @@
+// from this quickstart example:
+// https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.resources/deployment-script-ssh-key-gen
+
 param location string = resourceGroup().location
-param newGuid string = sys.newGuid()
 param passphrase string
 
 resource scriptName 'Microsoft.Resources/deploymentScripts@2020-10-01' = {
@@ -7,10 +9,9 @@ resource scriptName 'Microsoft.Resources/deploymentScripts@2020-10-01' = {
   location: location
   kind: 'AzureCLI'
   properties: {
-    forceUpdateTag: newGuid
     azCliVersion: '2.0.80'
     timeout: 'PT30M'
-    retentionInterval: 'P1D'
+    retentionInterval: 'P7D' // script will not re-run for 7 days
     cleanupPreference: 'OnSuccess'
     arguments: passphrase
     scriptContent: loadTextContent('keygen.sh')

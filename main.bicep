@@ -9,7 +9,7 @@ resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   location: location
 }
 
-module sshKey 'br/building-blocks:ssh-keygen:1.0' = {
+module sshKey 'br/building-blocks:ssh-keygen:1.1' = {
   scope: rg
   
   name: 'sshKeyGen'
