@@ -1,9 +1,15 @@
 param location string = resourceGroup().location
+
+@description('Used as a prefix for resource creations')
 param baseName string
 param adminUsername string
 param sshKey string
+
+@description('Controls ability to govern Kubernetes control plane with Azure Policy')
 param policyEnabled bool = false
-param costControlesEnabled bool = false
+
+@description('Determines if cost management resources for budgeting, alerting and cost dashboards will be deployed')
+param costControlsEnabled bool = false
 
 resource aks 'Microsoft.ContainerService/managedClusters@2022-06-01' = {
   name: '${baseName}app'
@@ -42,9 +48,6 @@ resource aks 'Microsoft.ContainerService/managedClusters@2022-06-01' = {
   }
 }
 
-resource cost 'Microsoft.CostManagement/alerts@2021-10-01' = if(costControlesEnabled){
-  name: 'foo'
-  properties: {
-    // todo -- need help from michael/adam on how to write this code...
-  }
-}
+
+
+output costEnabled bool = costControlsEnabled
