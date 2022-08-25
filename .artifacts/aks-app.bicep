@@ -48,6 +48,11 @@ resource aks 'Microsoft.ContainerService/managedClusters@2022-06-01' = {
   }
 }
 
-
+module costs 'br/building-blocks:cost-mgmt:1.0' = if (costControlsEnabled) {
+  name: 'costDeploy'
+  params: {
+    baseName: baseName
+  }
+}
 
 output costEnabled bool = costControlsEnabled
